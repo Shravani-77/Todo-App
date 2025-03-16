@@ -36,17 +36,24 @@ export class TodoListComponent implements OnInit{
         });
     }
 }
+
 addTodo(): void {
-  if (!this.newTodo.trim()) return;
+  if (!this.newTodo.trim()) {
+    alert('Please enter a valid todo!');
+    return;
+  }
 
   const newTodo = { title: this.newTodo, description: 'New Task Description' };
   this.todoService.addTodo(newTodo).subscribe(
     (createdTodo) => {
-      this.todos=[...this.todos,createdTodo];
+      this.todos = [...this.todos, createdTodo];
       this.newTodo = '';
       alert('Todo added successfully!');
     },
-    error => console.error('Error adding todo:', error)
+    error => {
+      console.error('Error adding todo:', error);
+      alert('Failed to add todo. Please try again.');
+    }
   );
 }
 editTodo(id: string): void {
