@@ -1,28 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
+const connectDB = require('./connection/database');
 const { seedUsers } = require("./utils/seed-data/users");
 
 // Routes
 const todoRoutes = require('./routes/todoRoutes');
 
 const app = express();
-
 app.use(express.json());
-app.use(cors());
-
+app.use(cors({ origin: 'http:/localhost:4200'}));
 app.use('/api', todoRoutes);
 
-// MongoDB connection
-mongoose.connect('mongodb://localhost:27017/todo-app')
-    .then(() => console.log("MongoDB Connected"))
-    .catch(err => console.error(err));
-
-// Sample route
-app.get('/', (req, res) => {
-    res.send("Backend is running!");
-});
+// MongoDB 
+connectDB();
 
 seedUsers();
 
