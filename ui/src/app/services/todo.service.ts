@@ -18,7 +18,7 @@ export class TodoService {
   deleteTodo(id: string): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/${id}`);
   }
-  addTodo(todo: {title:string; description:string } ): Observable<any>{
+  addTodo(todo: {title:string} ): Observable<any>{
     return this.http.post<any>(this.baseUrl,todo);
   }
   updateTodo(id:string,todo:any): Observable<any>{

@@ -1,17 +1,16 @@
 <div class="wrapper">
-  <form class="todo-form">
-    <input id="todo-input" type="text" placeholder="Title" autocomplete="off">
-    <input id="todo-input" type="text" placeholder="Desc" autocomplete="off">
-    <input id="todo-input" type="text" placeholder="Tags" autocomplete="off">
+  <form class="todo-form" [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+    <input id="todo-input" type="text" placeholder="Title" autocomplete="off" formControlName="title">
+    <input id="todo-input" type="text" placeholder="Desc" autocomplete="off" formControlName="description">
+    <input id="todo-input" type="text" placeholder="Users" autocomplete="off" formControlName="users">
 
     <!-- <label for="priorities">Priority :</label> -->
 
-    <select name="priorities" id="priorities">
-      <option value="">Medium</option>
-
+    <select name="priorities" id="priorities" formControlName="priority">
       <option value="high">High</option>
       <option value="medium">Medium</option>
       <option value="low">Low</option>
     </select>
+    <button type="submit" id="update-button" [disabled]="todoForm.invalid">Update</button>
   </form>
 </div>

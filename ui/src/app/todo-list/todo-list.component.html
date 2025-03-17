@@ -1,10 +1,10 @@
 <div class="wrapper">
   <form>
-    <input id="todo-input" type="text" placeholder="Enter anything" autocomplete="off"/>
+    <input id="todo-input" type="text" name="newTodo" placeholder="Enter anything" autocomplete="off"[(ngModel)]="newTodo"/>
     <button (click)="addTodo()" id="add-button">ADD</button>
   </form>
   
   <ul id ="todo-list">
-    <app-todo *ngFor="let todo of todos; index as i" [todo]="todo" [index]="i"  (editRequested)="editTodo($event)" (deleteRequested)="deleteTodo(todo._id)"></app-todo>
+    <app-todo *ngFor="let todo of todos; index as i" [todo]="todo" [index]="i" (deleteRequested)="deleteTodo(todo._id)"></app-todo>
   </ul>
 </div>
