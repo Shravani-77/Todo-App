@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TodoService } from '../services/todo.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-todo',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.scss'
 })
