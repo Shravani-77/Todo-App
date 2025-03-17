@@ -6,14 +6,12 @@ const todosStr = 'API : Todos';
 // Create a todo
 
 router.post('/todos', async (req, res) => {
-    console.log(`POST : ${todosStr}`);
-
     try {
         const todo = new Todo(req.body);
-        await todo.save();
-        res.status(201).send(todo);
+        const saved =await todo.save();
+        res.status(201).json(saved);
     } catch (err) {
-        res.status(500).send('Unable to create Todo. Please try after sometime.');
+        res.status(500).json('Unable to create Todo. Please try after sometime.');
     }
 });
 
@@ -23,7 +21,7 @@ router.get('/todos', async (req, res) => {
     try {
         console.log(`GET : ${todosStr}`);
 
-        const { page = 1, limit = 5 } = req.query; // Default values
+        const { page = 1, limit = 100 } = req.query; // Default values
         const todos = await Todo.find()
                                 .skip((page - 1) * limit)
                                 .limit(parseInt(limit));
@@ -62,7 +60,8 @@ router.delete('/todos/:id', async (req, res) => {
         if (!todo) {
             return res.status(404).send('Todo not found');
         }
-        res.send("Todo deleted successfully");
+        res.status(200).json("Todo deleted successfully");
+       // res.send("Todo deleted successfully");
     } catch (error) {
         res.status(500).send('Unable to delete Todo');
     }

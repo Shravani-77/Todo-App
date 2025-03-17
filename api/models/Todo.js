@@ -5,7 +5,7 @@ const TodoSchema = new mongoose.Schema({
     description: String,
     tags: [String],
     priority: { type: String, enum: ['High', 'Medium', 'Low'], default: 'Medium' },
-    users: { type: String, required: true },
+    users: { type: String },
     createdAt: { type: Date, default: Date.now }
 });
 
